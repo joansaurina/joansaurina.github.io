@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Nombre - AI & Computational Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --accent-color: #2c3e50; /* Azul oscuro académico */
+            --link-color: #3498db;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header / Hero Section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Social Icons */
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--link-color);
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Lists for Research/Blog */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        .item-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .item-meta {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        a.link-btn {
+            text-decoration: none;
+            color: var(--link-color);
+            font-weight: 500;
+        }
+
+        a.link-btn:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <img src="foto.jpg" alt="Profile Photo" class="profile-img">
+            <h1>[Tu Nombre Completo]</h1>
+            <p class="tagline">AI Engineer & Computational Biologist</p>
+            <p style="max-width: 600px; margin: 20px auto; font-size: 0.95rem; color: #555;">
+                From abstract algorithms to the signals of life. Transforming biology into a predictive information science through deep learning and genomics.
+            </p>
+            
+            <div class="social-links">
+                <a href="mailto:tuemail@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/tu-perfil" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/tu-usuario" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://orcid.org/tu-id" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+            </div>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                My journey bridges the gap between Artificial Intelligence and the Life Sciences. 
+                With a background in AI Engineering from <strong>UPC</strong> and research experience at <strong>Stanford University</strong> and <strong>BSC</strong>, 
+                I am focused on applying Deep Learning to genomics and biological data. 
+            </p>
+            <p>
+                Currently expanding my research to drug toxicity and Large Language Models at <strong>EMBL-EBI</strong> (Cambridge). 
+                I advocate for a holistic <strong>One Health</strong> approach—integrating data from humans, animals, and environments.
+            </p>
+        </section>
+
+        <section id="research">
+            <h2>Research & Publications</h2>
+            <ul>
+                <li>
+                    <span class="item-title">Accelerating Admixture Prediction with Deep Learning</span>
+                    <span class="item-meta">First Author | Ioannidis Lab, Stanford University</span>
+                    <p>Optimizing computational methods for genetic ancestry analysis in massive biobanks. Upcoming presentation in Washington D.C. (July 2026).</p>
+                </li>
+                <li>
+                    <span class="item-title">HPC-Driven Disease Prediction Models</span>
+                    <span class="item-meta">Researcher | Barcelona Supercomputing Center (BSC)</span>
+                    <p>Leveraged High-Performance Computing environments to accelerate genomic analysis for disease prediction.</p>
+                </li>
+                <li>
+                    <span class="item-title">Multimodal Integration for Drug Toxicity</span>
+                    <span class="item-meta">Incoming Fellow | EMBL-EBI, Cambridge</span>
+                    <p>Integrating LLMs and Cell Painting data to predict drug toxicity mechanisms.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="blog">
+            <h2>Reports & Thoughts</h2>
+            <ul>
+                <li>
+                    <span class="item-title">The Future of AI in Biology</span>
+                    <span class="item-meta">January 2026</span>
+                    <p>Reflections on AlphaFold and the shift from descriptive to predictive biology. <a href="#" class="link-btn">Read Report (PDF)</a></p>
+                </li>
+                <li>
+                    <span class="item-title">Notes from DTU: Engineering Culture</span>
+                    <span class="item-meta">December 2024</span>
+                    <p>Key takeaways from my exchange semester in Denmark. <a href="#" class="link-btn">Read More</a></p>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 [Tu Nombre]. Built with code & biology.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
