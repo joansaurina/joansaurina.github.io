@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Nombre - AI & Computational Biology</title>
+    <title>Joan Saurina - AI & Computational Biology</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --bg-color: #f8f9fa;
             --text-color: #333;
-            --accent-color: #2c3e50; /* Azul oscuro académico */
+            --accent-color: #2c3e50;
             --link-color: #3498db;
             --card-bg: #ffffff;
+            --nav-hover: #e9ecef;
         }
 
         body {
@@ -21,115 +22,182 @@
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1;
         }
 
-        /* Header / Hero Section */
+        /* --- HEADER --- */
         header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px 20px;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--accent-color);
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 4px solid var(--accent-color);
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--accent-color);
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #666;
-            margin-top: 10px;
+            margin-top: 5px;
+            font-weight: 300;
         }
 
-        /* Social Icons */
+        .bio-summary {
+            max-width: 600px;
+            margin: 15px auto;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* --- SOCIAL ICONS --- */
         .social-links {
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
         .social-links a {
             color: var(--accent-color);
             font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
+            margin: 0 12px;
+            transition: all 0.2s ease;
+            display: inline-block;
         }
 
         .social-links a:hover {
             color: var(--link-color);
+            transform: translateY(-3px);
         }
 
-        /* Sections */
-        section {
+        /* --- NAVIGATION TABS --- */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px; /* Para solapar la línea */
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            color: var(--accent-color);
+            background-color: var(--nav-hover);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .nav-btn.active {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .content-section {
+            display: none; /* Oculto por defecto */
+            animation: fadeIn 0.4s ease-in-out;
             background: var(--card-bg);
             padding: 30px;
-            margin-bottom: 30px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .content-section.active {
+            display: block; /* Solo se muestra el activo */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 10px;
+            margin-top: 0;
             color: var(--accent-color);
-        }
-
-        /* Lists for Research/Blog */
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
+            font-size: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
+        /* --- LIST STYLES --- */
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 25px; }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
         .item-title {
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.1rem;
-            display: block;
+            color: var(--accent-color);
         }
 
         .item-meta {
-            font-size: 0.9rem;
-            color: #777;
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
         }
 
-        a.link-btn {
+        .item-desc {
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+
+        .cv-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: var(--accent-color);
+            color: white;
             text-decoration: none;
-            color: var(--link-color);
-            font-weight: 500;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
         }
 
-        a.link-btn:hover {
-            text-decoration: underline;
+        .cv-button:hover {
+            background-color: var(--link-color);
         }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
             font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 10px; }
+            color: #999;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -138,76 +206,142 @@
     <div class="container">
         
         <header>
-            <img src="foto.jpg" alt="Profile Photo" class="profile-img">
-            <h1>[Tu Nombre Completo]</h1>
+            <img src="utils/photo_joan_saurina.jpg" alt="Joan Saurina" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+            
+            <h1>Joan Saurina i Ricós</h1>
             <p class="tagline">AI Engineer & Computational Biologist</p>
-            <p style="max-width: 600px; margin: 20px auto; font-size: 0.95rem; color: #555;">
-                From abstract algorithms to the signals of life. Transforming biology into a predictive information science through deep learning and genomics.
+            
+            <p class="bio-summary">
+                Bridging the gap between Artificial Intelligence and Life Sciences. 
+                Focusing on <strong>One Health</strong>, deep learning in genomics, and multimodal biological data.
+                <br>
+                <a href="utils/CV_JOAN_SAURINA_I_RICOS.pdf" target="_blank" class="cv-button">
+                    <i class="fas fa-file-pdf"></i> Download CV
+                </a>
             </p>
             
             <div class="social-links">
-                <a href="mailto:tuemail@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/tu-perfil" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/tu-usuario" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://orcid.org/tu-id" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+                <a href="mailto:joansaurinaricos@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/joan-saurina-i-ric%C3%B3s-2b01a1281/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/joansaurina" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://orcid.org/0009-0008-5498-8639" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
             </div>
         </header>
 
-        <section id="about">
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="openTab('about')">About</button>
+            <button class="nav-btn" onclick="openTab('research')">Research</button>
+            <button class="nav-btn" onclick="openTab('blog')">Blog</button>
+        </nav>
+
+        <section id="about" class="content-section active">
             <h2>About Me</h2>
             <p>
-                My journey bridges the gap between Artificial Intelligence and the Life Sciences. 
-                With a background in AI Engineering from <strong>UPC</strong> and research experience at <strong>Stanford University</strong> and <strong>BSC</strong>, 
-                I am focused on applying Deep Learning to genomics and biological data. 
+                My journey did not begin with a fully formed roadmap, but with a fundamental curiosity about the logic of artificial intelligence. 
+                I enrolled at the <strong>Polytechnic University of Catalonia (UPC)</strong> to pursue a Bachelor’s in Artificial Intelligence, driven by a desire to master the mathematical and computational tools that define modern problem-solving.
             </p>
             <p>
-                Currently expanding my research to drug toxicity and Large Language Models at <strong>EMBL-EBI</strong> (Cambridge). 
-                I advocate for a holistic <strong>One Health</strong> approach—integrating data from humans, animals, and environments.
+                A pivotal moment in my trajectory was joining Prof. Alexander Ioannidis’ lab at <strong>Stanford University</strong>. What started as remote collaboration evolved into an immersive residency where I employed deep learning to analyze health data and unravel complex biological patterns.
+            </p>
+            <p>
+                I am now preparing for my tenure at the <strong>European Bioinformatics Institute (EMBL-EBI)</strong> in Cambridge, starting in January 2026, where I will expand my scope to drug toxicity using LLMs and Cell Painting data. My ultimate goal is to dissolve the boundaries between human precision medicine and animal health—the essence of the One Health approach.
             </p>
         </section>
 
-        <section id="research">
+        <section id="research" class="content-section">
             <h2>Research & Publications</h2>
             <ul>
                 <li>
-                    <span class="item-title">Accelerating Admixture Prediction with Deep Learning</span>
-                    <span class="item-meta">First Author | Ioannidis Lab, Stanford University</span>
-                    <p>Optimizing computational methods for genetic ancestry analysis in massive biobanks. Upcoming presentation in Washington D.C. (July 2026).</p>
+                    <div class="item-header">
+                        <span class="item-title">Accelerating Admixture Prediction with Deep Learning</span>
+                        <span class="item-meta">2026 (Upcoming)</span>
+                    </div>
+                    <p class="item-desc">
+                        <strong>First Author</strong> | Ioannidis Lab, Stanford University.<br>
+                        Optimizing computational methods for genetic ancestry analysis in massive biobanks. To be presented in Washington D.C. in July 2026.
+                    </p>
                 </li>
                 <li>
-                    <span class="item-title">HPC-Driven Disease Prediction Models</span>
-                    <span class="item-meta">Researcher | Barcelona Supercomputing Center (BSC)</span>
-                    <p>Leveraged High-Performance Computing environments to accelerate genomic analysis for disease prediction.</p>
+                    <div class="item-header">
+                        <span class="item-title">HPC-Driven Disease Prediction Models</span>
+                        <span class="item-meta">2024 - 2025</span>
+                    </div>
+                    <p class="item-desc">
+                        <strong>Researcher</strong> | Barcelona Supercomputing Center (BSC).<br>
+                        Leveraged High-Performance Computing environments to accelerate genomic analysis for disease prediction under the guidance of Dr. David Torrents.
+                    </p>
                 </li>
                 <li>
-                    <span class="item-title">Multimodal Integration for Drug Toxicity</span>
-                    <span class="item-meta">Incoming Fellow | EMBL-EBI, Cambridge</span>
-                    <p>Integrating LLMs and Cell Painting data to predict drug toxicity mechanisms.</p>
+                    <div class="item-header">
+                        <span class="item-title">Computer Vision for Robotics</span>
+                        <span class="item-meta">2023</span>
+                    </div>
+                    <p class="item-desc">
+                        Institute of Industrial and Control Engineering.<br>
+                        Developed algorithms for image processing, gaining a unique perspective on unstructured data essential for digital biology.
+                    </p>
                 </li>
             </ul>
         </section>
 
-        <section id="blog">
+        <section id="blog" class="content-section">
             <h2>Reports & Thoughts</h2>
             <ul>
                 <li>
-                    <span class="item-title">The Future of AI in Biology</span>
-                    <span class="item-meta">January 2026</span>
-                    <p>Reflections on AlphaFold and the shift from descriptive to predictive biology. <a href="#" class="link-btn">Read Report (PDF)</a></p>
+                    <div class="item-header">
+                        <span class="item-title">The Future of AI in Biology</span>
+                        <span class="item-meta">Jan 16, 2026</span>
+                    </div>
+                    <p class="item-desc">
+                        Reflections on Sir Demis Hassabis' vision and the shift from descriptive to predictive biology. 
+                        <br><a href="#" style="color:var(--link-color)">Read full article</a>
+                    </p>
                 </li>
                 <li>
-                    <span class="item-title">Notes from DTU: Engineering Culture</span>
-                    <span class="item-meta">December 2024</span>
-                    <p>Key takeaways from my exchange semester in Denmark. <a href="#" class="link-btn">Read More</a></p>
+                    <div class="item-header">
+                        <span class="item-title">Notes from DTU: Engineering Culture</span>
+                        <span class="item-meta">Dec 2024</span>
+                    </div>
+                    <p class="item-desc">
+                        Key takeaways from my exchange semester in Denmark and adapting to a new scientific culture.
+                    </p>
                 </li>
             </ul>
         </section>
 
         <footer>
-            <p>&copy; 2026 [Tu Nombre]. Built with code & biology.</p>
+            <p>&copy; 2026 Joan Saurina. Built with code & biology.</p>
         </footer>
 
     </div>
+
+    <script>
+        function openTab(tabName) {
+            // 1. Ocultar todas las secciones
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Desactivar todos los botones
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 3. Mostrar la sección seleccionada y activar el botón
+            document.getElementById(tabName).classList.add('active');
+            
+            // Buscar el botón que se ha clickado (basado en el onclick) para añadir la clase active
+            // Un truco sencillo es iterar y ver cuál llama a la función con ese nombre, 
+            // o simplemente pasar 'this' en el onclick, pero aquí lo haremos buscando por texto o atributo.
+            // Para simplificar, confiaremos en que el usuario hace click.
+            
+            // Corrección para que se ilumine el botón correcto:
+            const clickedBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabName));
+            if (clickedBtn) clickedBtn.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
