@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes from DTU - Joan Saurina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Mismo estilo que tu página principal para mantener consistencia */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --accent-color: #2c3e50;
+            --link-color: #3498db;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8; /* Un poco más de espacio para lectura */
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px; /* Más estrecho para mejorar la lectura */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header del artículo */
+        .article-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover { color: var(--accent-color); }
+        .back-btn i { margin-right: 8px; }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .meta-info {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Cuerpo del texto */
+        .article-content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .article-content p { margin-bottom: 20px; font-size: 1.05rem; }
+        
+        .article-content h2 {
+            color: var(--accent-color);
+            margin-top: 40px;
+            font-size: 1.4rem;
+        }
+
+        .highlight-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid var(--link-color);
+            padding: 15px 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        img.article-img {
+            width: 100%;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #999;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <header class="article-header">
+            <h1>Notes from DTU: Engineering Culture & The Nordic Model</h1>
+            <p class="meta-info">Published on December 20, 2024 • Lyngby, Denmark</p>
+        </header>
+
+        <article class="article-content">
+            <p>
+                There is something disarming about walking into a lecture hall at the Technical University of Denmark (DTU) and hearing a student call a world-renowned professor by their first name. No "Sir," no "Professor," just "Lars" or "Mette."
+            </p>
+            <p>
+                My semester in Lyngby was more than just a deep dive into advanced algorithms; it was a masterclass in a different way of thinking. Coming from the rigorous, theoretically heavy environment of Southern Europe, the Danish model felt like a shock to the system—in the best possible way.
+            </p>
+
+            <h2>The "Flat Hierarchy" of Innovation</h2>
+            <p>
+                The first thing that strikes you is the lack of barriers. In Building 324, where I spent most of my nights coding, the architecture itself is transparent—glass walls, open spaces. This reflects the academic culture. You aren't just memorizing formulas; you are expected to challenge them.
+            </p>
+            <p>
+                I remember a group project on optimization where we got stuck. We knocked on our supervisor's door, expecting a formal appointment for next week. Instead, he invited us in for coffee, sat on the table (not the chair), and we spent an hour brainstorming as equals. That psychological safety accelerates learning faster than any textbook.
+            </p>
+
+            <div class="highlight-box">
+                "In Denmark, the education system is free for EU citizens, and students even get paid a stipend (SU) to study. This removes the survival anxiety I've seen elsewhere. People study here because they are genuinely curious, not because they are terrified of failing."
+            </div>
+
+            <h2>Bicycles, Wind, and Green Code</h2>
+            <p>
+                You haven't really experienced engineering until you've tried to transport a prototype on a bicycle in horizontal rain. The commitment to sustainability isn't just a marketing slogan here; it's embedded in the curriculum. 
+            </p>
+            <p>
+                At DTU, almost every AI project had a "Green Compute" metric. We weren't just graded on accuracy, but on energy efficiency. It forced me to think about the carbon footprint of training large models—a perspective I will carry into my work in computational biology.
+            </p>
+
+            <h2>Hygge and The "Friday Bar"</h2>
+            <p>
+                Finally, there is the social glue. The Danes have "Fredagsbar" (Friday Bar), a tradition where each department opens a bar at 16:00. It sounds trivial, but that is where the real networking happens. 
+            </p>
+            <p>
+                I found myself discussing neural networks with a chemical engineer over a cheap beer, leading to a perspective on protein folding I hadn't considered. It taught me that science doesn't happen in isolation; it happens when you mix disciplines in a relaxed environment (and maybe add a little candlelight for <em>hygge</em>).
+            </p>
+
+            <p>
+                Leaving Denmark, I’m taking with me more than just credits. I’m taking the conviction that rigorous engineering and a balanced, human-centric life are not mutually exclusive—they are complementary.
+            </p>
+        </article>
+
+        <footer>
+            <p>&copy; 2026 Joan Saurina.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
