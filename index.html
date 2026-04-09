@@ -31,25 +31,26 @@
         border-bottom: 1px solid #eee;
         padding-bottom: 10px;
         margin-bottom: 20px;
-        font-weight: bold;
+        font-weight: normal;
     }
     .social-links {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 1.5rem;
     }
     .social-links a {
-        color: #333;
+        color: #007bff;
         transition: color 0.2s;
         text-decoration: none;
         font-size: 0.95rem;
+        margin-right: 15px;
     }
     .social-links i {
         margin-right: 4px;
     }
     .social-links a:hover {
-        color: #007bff;
+        color: #0056b3;
     }
     p {
         text-align: justify;
@@ -57,10 +58,21 @@
     .img-thumbnail {
         object-fit: cover;
         object-position: center 20%;
+        border: 1px solid #dee2e6;
+        padding: 4px;
+        background-color: #fff;
+        border-radius: 4px;
     }
     .publication-img-no-frame {
         max-width: 100%;
         height: auto;
+    }
+    .img-zoomable {
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+    .img-zoomable:hover {
+        opacity: 0.8;
     }
   </style>
 </head>
@@ -73,17 +85,17 @@
         <!-- Header Section -->
         <div class="row" style="margin-top: 3em;">
           <div class="col-sm-12" style="margin-bottom: 1em;">
-            <h3 class="display-4" style="text-align: center;"><span style="font-weight: bold;">Joan</span> Saurina i Ricós</h3>
+            <h3 class="display-4" style="text-align: center; cursor: pointer;" onclick="location.reload();"><span style="font-weight: bold;">Joan</span> Saurina i Ricós</h3>
           </div>
           <br>
-          <div class="col-md-9" style="margin-top: 1em;">
+          <div class="col-md-10">
             <p>
               I graduated in <strong>Artificial Intelligence</strong> from the <a href="https://www.upc.edu/en" target="_blank" class="blue-link">Universitat Politècnica de Catalunya (UPC)</a>, 
               including international exchange semesters at the <a href="https://www.dtu.dk/english" target="_blank" class="blue-link">Technical University of Denmark (DTU)</a> 
               and <a href="https://www.stanford.edu/" target="_blank" class="blue-link">Stanford University</a>.
             </p>
             <p>
-              During my B.Sc., I completed research internships at <a href="https://www.stanford.edu/" target="_blank" class="blue-link">Stanford University</a> (2023-2025, <a href="https://ai-page.org/home" target="_blank" class="blue-link">Prof. Alexander Ioannidis</a>), 
+              During my B.Sc., I completed research internships at <a href="https://www.stanford.edu/" target="_blank" class="blue-link">Stanford University</a> (2023-2025, <a href="https://ai-page.org/home" target="_blank" class="blue-link">Alexander G Ioannidis</a>), 
               the <a href="https://www.bsc.es/" target="_blank" class="blue-link">Barcelona Supercomputing Center (BSC)</a> (2024-2025, <a href="https://www.bsc.es/torrents-arenales-david" target="_blank" class="blue-link">Dr. David Torrents</a>), 
               and the <a href="https://ioc.upc.edu/en" target="_blank" class="blue-link">Institute of Industrial and Control Engineering (IOC)</a> (2023-2024, <a href="https://www.isiahzaplana.com/" target="_blank" class="blue-link">Prof. Isiah Zaplana</a>).
             </p>
@@ -92,6 +104,7 @@
               under the supervision of <a href="https://ewaldlab.org/" target="_blank" class="blue-link">Jess Ewald</a>, 
               where I am integrating large language models with Cell Painting data to predict drug toxicity.
             </p>
+            <p>For any inquiries, feel free to reach out to me via mail!</p>
 
             <div class="social-links">
               <a href="mailto:joansaurinaricos@gmail.com" title="Email"><i class="fas fa-envelope"></i> Mail</a>
@@ -103,8 +116,8 @@
               <a href="utils/CV_JOAN_SAURINA_I_RICOS.pdf" target="_blank" title="Download CV"><i class="fas fa-file-pdf"></i> CV</a>
             </div>
           </div>
-          <div class="col-md-3 text-center">
-            <img src="utils/photo_joan_saurina.jpg" class="img-thumbnail" width="280px" alt="Joan Saurina">
+          <div class="col-md-2">
+            <img src="utils/photo_joan_saurina.jpg" class="img-thumbnail w-100" alt="Joan Saurina">
           </div>
         </div>
 
@@ -130,6 +143,17 @@
     </div>
   </div>
 
+  <!-- Image Zoom Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content" style="background: transparent; border: none;">
+        <div class="modal-body text-center">
+          <img src="" id="zoomedImage" class="img-fluid" style="max-height: 90vh;">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Optional JavaScript -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -143,6 +167,11 @@
 
   <!-- Bio-BibTeX dynamic loader -->
   <script>
+    function zoomImage(src) {
+      document.getElementById('zoomedImage').src = src;
+      $('#imageModal').modal('show');
+    }
+
     async function loadPublications() {
       try {
         const response = await fetch('publication_list.bib');
@@ -151,12 +180,13 @@
         const container = document.getElementById('publications-container');
         container.innerHTML = ''; // Clear current content
 
-        bibEntries.forEach(entry => {
+        bibEntries.forEach((entry, index) => {
           const authorHtml = formatAuthors(entry.author);
+          const bibtex = generateBibtex(entry);
           const entryHtml = `
             <div class="row mb-5">
               <div class="col-sm-4">
-                <img src="${entry.img || 'utils/placeholder.png'}" class="publication-img-no-frame" alt="Project image">
+                <img src="${entry.img || 'utils/placeholder.png'}" class="publication-img-no-frame img-zoomable" alt="Project image" onclick="zoomImage(this.src)">
               </div>
               <div class="col-sm-8">
                 <a href="${entry.url || '#'}" target="_blank" style="font-weight: bold; font-size: 1.1rem; color: #333;">
@@ -166,11 +196,19 @@
                 ${authorHtml}
                 <br>
                 <span style="font-style: italic;">${entry.journal || entry.booktitle || ''}</span>, ${entry.year}
-                <p class="mt-2" style="font-size: 0.95rem;">
+                <p class="mt-2 mb-1" style="font-size: 0.95rem;">
                   ${entry.abstract || ''}
                 </p>
-                <a href="${entry.url || '#'}" target="_blank">Paper</a>
-                ${entry.code ? ` / <a href="${entry.code}" target="_blank">Code</a>` : ''}
+                <div style="font-size: 0.95rem;">
+                  <a href="${entry.url || '#'}" target="_blank">Paper</a>
+                  ${entry.code ? ` / <a href="${entry.code}" target="_blank">Code</a>` : ''}
+                  / <button class="btn btn-link p-0" style="vertical-align: baseline; font-size: 0.95rem;" type="button" data-toggle="collapse" data-target="#bibtex-${index}">Expand BibTeX</button>
+                  <div class="collapse mt-2" id="bibtex-${index}">
+                    <div class="card card-body bg-light">
+                      <pre class="mb-0" style="font-size: 0.8rem; white-space: pre-wrap;">${bibtex}</pre>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           `;
@@ -179,6 +217,19 @@
       } catch (e) {
         console.error("Error loading publications:", e);
       }
+    }
+
+    function generateBibtex(entry) {
+      const type = entry.journal ? 'article' : (entry.booktitle ? 'inproceedings' : 'misc');
+      const id = entry.author.split(' ')[0].toLowerCase() + entry.year;
+      let bib = `@${type}{${id},\n`;
+      Object.keys(entry).forEach(key => {
+        if (!['img', 'abstract'].includes(key)) {
+           bib += `  ${key} = {${entry[key]}},\n`;
+        }
+      });
+      bib += `}`;
+      return bib;
     }
 
     function parseBib(text) {
@@ -213,7 +264,7 @@
         if (isDaniel) {
             content = `<a href="https://dmasmont.github.io/" target="_blank" style="color: #007bff;">${name}</a>`;
         } else if (isIoannidis) {
-            content = `<a href="https://ai-page.org/home" target="_blank" style="color: #007bff;">${name}</a>`;
+            content = `<a href="https://ai-page.org/home" target="_blank" style="color: #007bff;">Alexander G Ioannidis</a>`;
         }
         
         return `<span style="${isMe ? 'font-weight: bold; color: #007bff;' : ''}">${content}</span>`;
