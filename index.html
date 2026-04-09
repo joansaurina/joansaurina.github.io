@@ -14,6 +14,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <title>Joan Saurina - AI & Computational Biology</title>
+  <link rel="icon" type="image/png" href="utils/DNA.png">
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -62,6 +63,7 @@
         padding: 4px;
         background-color: #fff;
         border-radius: 4px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.075);
     }
     .publication-img-no-frame {
         max-width: 100%;
@@ -88,7 +90,7 @@
             <h3 class="display-4" style="text-align: center; cursor: pointer;" onclick="location.reload();"><span style="font-weight: bold;">Joan</span> Saurina i Ricós</h3>
           </div>
           <br>
-          <div class="col-md-10">
+          <div class="col-md-9">
             <p>
               I graduated in <strong>Artificial Intelligence</strong> from the <a href="https://www.upc.edu/en" target="_blank" class="blue-link">Universitat Politècnica de Catalunya (UPC)</a>, 
               including international exchange semesters at the <a href="https://www.dtu.dk/english" target="_blank" class="blue-link">Technical University of Denmark (DTU)</a> 
@@ -116,8 +118,8 @@
               <a href="utils/CV_JOAN_SAURINA_I_RICOS.pdf" target="_blank" title="Download CV"><i class="fas fa-file-pdf"></i> CV</a>
             </div>
           </div>
-          <div class="col-md-2">
-            <img src="utils/photo_joan_saurina.jpg" class="img-thumbnail w-100" alt="Joan Saurina">
+          <div class="col-md-3">
+            <img src="utils/photo_joan_saurina.jpg" class="img-thumbnail" width="280px" alt="Joan Saurina">
           </div>
         </div>
 
@@ -258,7 +260,7 @@
         const isDaniel = name.includes('Mas Monserrat') || name.includes('Monserrat');
         const isIoannidis = name.includes('Ioannidis');
         
-        let style = isMe ? 'font-weight: bold; color: #007bff;' : ((isDaniel || isIoannidis) ? 'color: #007bff;' : '');
+        let style = isMe ? 'font-weight: bold; color: #007bff; cursor: pointer;' : ((isDaniel || isIoannidis) ? 'color: #007bff;' : '');
         let content = name;
         
         if (isDaniel) {
@@ -267,7 +269,8 @@
             content = `<a href="https://ai-page.org/home" target="_blank" style="color: #007bff;">Alexander G Ioannidis</a>`;
         }
         
-        return `<span style="${isMe ? 'font-weight: bold; color: #007bff;' : ''}">${content}</span>`;
+        const onclickAttr = isMe ? 'onclick="location.reload();"' : '';
+        return `<span style="${style}" ${onclickAttr}>${content}</span>`;
       }).join(', ');
     }
 
